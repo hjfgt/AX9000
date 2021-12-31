@@ -3,7 +3,7 @@ rm -rf feeds/xiangfeidexiaohuo/patch/autocore
 rm -rf package/feeds/xiangfeidexiaohuo/luci-app-vssr
 
 # 修改管理IP
-#sed -i 's/192.168.1.1/10.10.10.1/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
 
 # 修正连接数
 sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' package/base-files/files/etc/sysctl.conf
@@ -25,8 +25,8 @@ sed -i '/exit/i\uci set network.wan.ifname='eth0'' package/lean/default-settings
 sed -i '/exit/i\uci set network.wan6.ifname='eth0'' package/lean/default-settings/files/zzz-default-settings
 sed -i '/exit/i\uci commit network' package/lean/default-settings/files/zzz-default-settings
 
-# 替换私人设置
-curl -fsSL https://raw.githubusercontent.com/hongcz1104/OPENWRT-AX3600/config/mac80211.sh > package/kernel/mac80211/files/lib/wifi/mac80211.sh
+# 修改wifi设置
+curl -fsSL https://raw.githubusercontent.com/hongcz1104/AX9000/main/mac80211.sh > package/kernel/mac80211/files/lib/wifi/mac80211.sh
 
 
 # 取消bootstrap为默认主题，改为argon-18.06
