@@ -1,4 +1,4 @@
-name: Build_ax3600
+name: Build_AX9000
 
 on: 
   repository_dispatch:
@@ -78,16 +78,16 @@ jobs:
     - name: Assemble Artifact
       id: assemble_artifact
       run: |
-        rm -rf ./AX3600_Out
-        mkdir -p ./AX3600_Out/
-        cp -a openwrt/bin/targets/ipq807x/generic/openwrt-ipq807x-generic-xiaomi_ax3600-squashfs-nand-sysupgrade.bin ./AX3600_Out/AX9000-OpenWrt-5.10-sysupgrade-$(TZ=UTC+8 date +%Y%m%d).bin
-        cp -a openwrt/bin/targets/ipq807x/generic/openwrt-ipq807x-generic-xiaomi_ax3600-squashfs-nand-factory.ubi ./AX3600_Out/AX9000-OpenWrt-5.10-factory-$(TZ=UTC+8 date +%Y%m%d).ubi
+        rm -rf ./AX9000_Out
+        mkdir -p ./AX9000_Out/
+        cp -a openwrt/bin/targets/ipq807x/generic/openwrt-ipq807x-generic-xiaomi_AX9000-squashfs-nand-sysupgrade.bin ./AX9000_Out/AX9000-OpenWrt-5.10-sysupgrade-$(TZ=UTC+8 date +%Y%m%d).bin
+        cp -a openwrt/bin/targets/ipq807x/generic/openwrt-ipq807x-generic-xiaomi_AX9000-squashfs-nand-factory.ubi ./AX9000_Out/AX9000-OpenWrt-5.10-factory-$(TZ=UTC+8 date +%Y%m%d).ubi
                
     - name: Upload Firmwares
       uses: actions/upload-artifact@main
       with:
-        name: AX3600-OpenWrt
-        path: AX3600_Out/AX3600* 
+        name: AX9000-OpenWrt
+        path: AX9000_Out/AX9000* 
         
     - name: Generate Tag & Release Name
       id: generate_name
@@ -100,7 +100,7 @@ jobs:
     - name: Create Release & Upload
       uses: ncipollo/release-action@v1
       with:
-        artifacts: AX3600_Out/AX3600*
+        artifacts: AX9000_Out/AX9000*
         name: ${{ steps.generate_name.outputs.release_name }}
         tag: ${{ steps.generate_name.outputs.release_tag }}
         token: ${{ secrets.GITHUB_TOKEN }}           
