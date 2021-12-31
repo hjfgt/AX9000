@@ -8,12 +8,6 @@ sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_genera
 # 修正连接数
 sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' package/base-files/files/etc/sysctl.conf
 
-# 修改root密码
-#sed -i 's/V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0/bt44IxMu$i4NgW46.Dpkm5VCZeffEL0:18984/g' package/lean/default-settings/files/zzz-default-settings
-
-# 版本号里添加信息
-#sed -i "s/DISTRIB_REVISION='*.*'/DISTRIB_REVISION='By HONGCZ $(TZ=UTC-8 date +%Y%m%d)'/g" package/lean/default-settings/files/zzz-default-settings
-
 # 修改主机名字
 sed -i '/uci commit system/i\uci set system.@system[0].hostname='AX9000'' package/lean/default-settings/files/zzz-default-settings
 
