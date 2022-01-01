@@ -19,15 +19,6 @@ sed -i '/exit/i\uci set network.wan.ifname='eth0'' package/lean/default-settings
 sed -i '/exit/i\uci set network.wan6.ifname='eth0'' package/lean/default-settings/files/zzz-default-settings
 sed -i '/exit/i\uci commit network' package/lean/default-settings/files/zzz-default-settings
 
-# 修改wifi设置
-#curl -fsSL https://raw.githubusercontent.com/hongcz1104/AX9000/main/mac80211.sh > package/kernel/mac80211/files/lib/wifi/mac80211.sh
-
-
-# 取消bootstrap为默认主题，改为argon-18.06
-sed -i '/set luci.main.mediaurlbase=\/luci-static\/bootstrap/d' feeds/luci/themes/luci-theme-bootstrap/root/etc/uci-defaults/30_luci-theme-bootstrap
-sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
-sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci-nginx/Makefile
-
 # 修改WiFi名称
 sed -i 's/set wireless.default_radio${devidx}.ssid=OpenWrt/set wireless.default_radio0.ssid=Xiaomi 5G Game/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
 sed -i '/set wireless.default_radio0.ssid=Xiaomi 5G Game/a\set wireless.default_radio1.ssid=Xiaomi 5G' package/kernel/mac80211/files/lib/wifi/mac80211.sh
@@ -36,3 +27,8 @@ sed -i '/set wireless.default_radio1.ssid=Xiaomi 5G/a\set wireless.default_radio
 # 修改默认wifi密码
 sed -i 's/encryption=none/encryption=psk2/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
 sed -i '/set wireless.default_radio${devidx}.encryption=psk2/a\set wireless.default_radio${devidx}.key=20130922' package/kernel/mac80211/files/lib/wifi/mac80211.sh
+
+# 取消bootstrap为默认主题，改为argon-18.06
+sed -i '/set luci.main.mediaurlbase=\/luci-static\/bootstrap/d' feeds/luci/themes/luci-theme-bootstrap/root/etc/uci-defaults/30_luci-theme-bootstrap
+sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
+sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci-nginx/Makefile
