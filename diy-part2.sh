@@ -4,6 +4,9 @@ sed -i 's/10.10.10.1/192.168.10.1/g' package/base-files/files/bin/config_generat
 # 修正连接数
 sed -i 's/65535/165535/g' package/base-files/files/etc/sysctl.conf
 
+# 版本号里添加编译日期
+sed -i "s/DISTRIB_REVISION='*.*'/DISTRIB_REVISION='By HONGCZ $(TZ=UTC-8 date +%Y%m%d)'/g" package/lean/default-settings/files/zzz-default-settings
+
 # 修改主机名字
 sed -i '/uci commit system/i\uci set system.@system[0].hostname='AX9000'' package/lean/default-settings/files/zzz-default-settings
 
