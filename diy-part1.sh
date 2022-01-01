@@ -4,4 +4,4 @@ rm -rf ./package/lean/aliyundrive-webdav
 rm -rf ./package/lean/luci-app-aliyundrive-webdav
 rm -rf ./package/lean/luci-app-go-aliyundrive-webdav
 rm -rf ./package/lean/luci-app-cpufreq
-
+rm -rf ./package/lean/luci-app-kodexplorer
