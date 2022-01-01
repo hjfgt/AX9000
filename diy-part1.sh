@@ -7,6 +7,6 @@ rm -rf ./package/lean/luci-app-go-aliyundrive-webdav
 rm -rf ./package/lean/luci-app-cpufreq
   
 # 添加插件库
-echo -e "\nsrc-git xiangfeidexiaohuo https://github.com/xiangfeidexiaohuo/openwrt-packages" >> feeds.conf.default
+echo -e "\nsrc-git kiddin9 https://github.com/kiddin9/openwrt-packages" >> feeds.conf.default
 
 svn checkout  https://github.com/vernesong/OpenClash/branches/dev/luci-app-openclash ./package/lean/luci-app-openclash
