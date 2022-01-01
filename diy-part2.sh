@@ -27,3 +27,12 @@ curl -fsSL https://raw.githubusercontent.com/hongcz1104/AX9000/main/mac80211.sh 
 sed -i '/set luci.main.mediaurlbase=\/luci-static\/bootstrap/d' feeds/luci/themes/luci-theme-bootstrap/root/etc/uci-defaults/30_luci-theme-bootstrap
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci-nginx/Makefile
+
+# 修改WiFi名称
+sed -i 's/set wireless.default_radio${devidx}.ssid=OpenWrt/set wireless.default_radio0.ssid=Xiaomi 5G Game/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
+sed -i '/set wireless.default_radio0.ssid=openwrtplus/a\set wireless.default_radio1.ssid=Xiaomi 5G' package/kernel/mac80211/files/lib/wifi/mac80211.sh
+sed -i '/set wireless.default_radio1.ssid=Xiaomi 5G/a\set wireless.default_radio2.ssid=Xiaomi 2.4G' package/kernel/mac80211/files/lib/wifi/mac80211.sh
+
+# 修改默认wifi密码
+sed -i 's/encryption=none/encryption=psk2/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
+sed -i '/set wireless.default_radio${devidx}.encryption=psk2/a\set wireless.default_radio${devidx}.key=20130922' package/kernel/mac80211/files/lib/wifi/mac80211.sh
